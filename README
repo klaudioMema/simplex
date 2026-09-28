@@ -1,0 +1,55 @@
+# Propotipo per l'algoritmo del simplesso
+
+Il prototipo è stato implementato su una macchina linux usando C++ e gli strumenti Flex e Bison
+
+## Prerequisiti di Sistema
+
+Per compilare ed eseguire il progetto sono necessari i seguenti strumenti
+
+* **g++**: Compilatore C++ (la versione utilizzata in questione è la versione 17)
+* **Flex**: Generatore del lexer
+* **Bison**: Generatore del parser
+* **Make**: Per la compilazione automatica dei sorgenti
+
+Su distribuzioni basate su Debian/Ubuntu si può installare il tutto con i comandi:
+
+sudo apt-get update
+sudo apt-get install build-essential flex bison
+
+## Struttura del Progetto
+
+simplex/
+├── Makefile                        # Script per la compilazione automatica
+├── README.md                       # Questo file di documentazione
+├── test/                           # Cartella con alcune istanze di test
+├── bin/                            # Contiene l'eseguibile finale
+│   └── solver                      # Programma eseguibile
+├── obj/                            # Contiene i file oggetto intermedi (.o) (generata dal make)
+└── src/                            # Codice sorgente del progetto
+    ├── engine/                     # File sorgenti dell'engine
+    │   ├── header/                 # Header dell'engine
+    │   │   ├── engine_header.h
+    │   │   └── simplex_header.h
+    │   ├── engine.cpp
+    │   ├── functions.cpp
+    │   └── simplex.cpp
+    └── parser/                     # Sorgenti del parser
+        ├── header/                 # Header del parser
+        ├── lexer.ll                # Sorgente del lexer
+        └── parser.yy               # Sorgente del parser
+
+## Compilazione e pulizia
+
+Per compilare basta richiamare il comando make dalla cartella principale del progetto,
+lo script genererà tutti i file necessari incluso l'eseguibile finale pronto all'uso.
+Il comando make clean elimina i file generati automaticamente incluso l'eseguibile.
+
+make clean
+make
+
+## Esecuzione
+
+Il solver si richiama da linea di comando passando come parametro un file di testo come input.
+Esempio dalla cartella principale:
+
+bin/solver test/test1
